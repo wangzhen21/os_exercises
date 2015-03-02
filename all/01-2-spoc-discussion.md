@@ -70,6 +70,8 @@
 为什么没有人用python，java来实现操作系统？
 - [x]  
 
+为什么没有人用python，java来实现操作系统？
+
 >  1、python和java运行效率低下，难以满足操作系统的性能要求，故没有人使用python和java来实现操作系统。  
 2、Java不容易嵌入汇编代码。
 
