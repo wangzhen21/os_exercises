@@ -48,7 +48,8 @@
 搭建好实验环境，请描述碰到的困难和解决的过程。
 - [x]  
 
-> 
+> 搭建过程按照普通方法，在VirtualBox上运行系统  
+遇到了无法解压OS_MOOC的问题，使用好压解压解决了此问题。
 
 熟悉基本的git命令，从github上（http://www.github.com/chyyuu/ucore_lab）下载ucore lab实验
 - [x]  
