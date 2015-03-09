@@ -49,6 +49,15 @@
  
  1. 以ucore lab8的answer为例，uCore的系统调用有哪些？大致的功能分类有哪些？(w2l1)
  
+ >ucore有大致二十几个系统调用，如
+sys_exit 终止进程
+sys_fork 创建一个新进程
+sys_wait 等待子进程终止
+sys_exec 运行可执行文件
+sys_yield 进程主动让出处理器,并将自己等候调度队列队尾;
+sys_open 打开文件
+sys_read 读文件
+功能分类与大致为 文件操作，进程管理，内存管理等
  ```
   + 采分点：说明了ucore的大致数量（二十几个），说明了ucore系统调用的主要分类（文件操作，进程管理，内存管理等）
   - 答案没有涉及上述两个要点；（0分）
@@ -60,7 +69,10 @@
 ## 3.4 linux系统调用分析
  1. 通过分析[lab1_ex0](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex0.md)了解Linux应用的系统调用编写和含义。(w2l1)
  
-
+>objdump:显示目标文件的信息，如objdump -d lab1-ex0.exe，实现其反汇编。
+nm：列出目标文件中符号
+file：显示文件的相关信息。
+系统调用：
  ```
   + 采分点：说明了objdump，nm，file的大致用途，说明了系统调用的具体含义
   - 答案没有涉及上述两个要点；（0分）
@@ -72,7 +84,7 @@
  
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(w2l1)
  
-
+>大致用途为追踪系统调用和信号量。
  ```
   + 采分点：说明了strace的大致用途，说明了系统调用的具体执行过程（包括应用，CPU硬件，操作系统的执行过程）
   - 答案没有涉及上述两个要点；（0分）
