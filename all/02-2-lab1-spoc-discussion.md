@@ -54,24 +54,46 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
 
 lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程序，完成实现定义和调用一个可变参数的函数。(spoc)
 - [x]  
-
-
+>程序如下，这里面用到了一个#include <stdarg.h>的库，stdarg.h是C语言中C标准函数库的头文件，stdarg是由standard（标准）   arguments（参数）简化而来，主要目的为让函数能够接收可变参数。程序中，主要用到了　va_list 来实现变参数。通过实验发现  
+当  max(1,10,20,5)时，输出10，当max(2,10,20,5)时，输出20，当当max(0,10,20,5)时，输出-0x7fffffff。
+#include <stdio.h>  
+#include <stdarg.h>  
+int max(int n,....)  
+{  
+　　　　int i;  
+　　　　va_list ap;  
+　　　　va_start(ap,n);  
+　　　　int max = -0x7fffffff;  
+　　　　int tmp;  
+　　　　for(i = 0;i < n ;i++)  
+　　　　　　　　{  
+　　　　　　　　　　　　tmp = va_arg(ap,int);  
+　　　　　　　　　　　　if(max <tmp)  
+　　　　　　　　　　　　　　　　max = tmp;  
+　　　　　　　　}  
+.　　　　va_end(ap);  
+　　　　　return max;  
+　}  
+int main()  
+ 　　　  { 
+　　　　　　　　printf("The max value of max() is %d\n",max(1,10,20,5));  
+　　　}  
 
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
 - [x]  
 
-> 
+>   
 
 
 如何能获取一个系统调用的调用次数信息？如何可以获取所有系统调用的调用次数信息？请简要说明可能的思路。(spoc)
 - [x]  
 
-> 
+>   
 
 如何裁减lab1, 实现一个可显示字符串"THU LAB1"且依然能够正确加载ucore OS的bootloader？如果不能完成实现，请说明理由。
 - [x]  
 
-> 
+>    
 
 对于ucore_lab中的labcodes/lab1，我们知道如果在qemu中执行，可能会出现各种稀奇古怪的问题，比如reboot，死机，黑屏等等。请通过qemu的分析功能来动态分析并回答lab1是如何执行并最终为什么会出现这种情况？
 - [x]  
