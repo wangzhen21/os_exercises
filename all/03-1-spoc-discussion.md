@@ -34,6 +34,126 @@ buddy systemm： 优点：可以避免大的空闲分区被拆分，可减小外
 ## 小组思考题
 
 请参考ucore lab2代码，采用`struct pmm_manager` 根据你的`学号 mod 4`的结果值，选择四种（0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm）分配算法中的一种或多种，在应用程序层面(可以 用python,ruby,C++，C，LISP等高语言)来实现，给出你的设思路，并给出测试用例。 (spoc)
+>#include <iostream>  
+using namespace std;  
+struct block  
+{  
+	int size;  
+	bool occupy;  
+	block *last;  
+	block *next;  
+};  
+block * head = new block;  
+block * malloc(int len)  
+{  
+	int max=-0;  
+	block * temp= head;  
+	block * candi = head;  
+	do{  
+		if(((temp->size)>max)&&(temp->occupy==false))  
+		{  
+				max = temp->size;  
+				candi = temp;  
+			 
+		}  
+			temp = temp->next;  
+	}while(temp != NULL);  
+	if(max<len)  
+	{  
+			cout<<"内存不足"<<endl;  
+			return NULL;  
+	}  
+	else  
+	{  
+		block * new_block= new block;  
+		new_block->size = (candi -> size)-len;  
+		new_block->occupy = false;  
+		new_block->last = candi;  
+		new_block->next = candi->next;  
+		candi-> size = len;  
+		candi ->occupy = true;  
+		candi ->next = new_block;  
+		return candi;
+	}  
+}  
+void free(block * bl)  
+{  
+	bl->occupy = false;  
+	if((bl->next)!=NULL)  
+	{  
+		if((bl->next)->occupy ==false)  
+		{  
+			bl->size = ( bl->size ) + (bl -> next)->size;  
+			bl->next = (bl -> next)->next;  
+		}  
+    }  
+    if((bl->last)!=NULL)  
+    {  
+		if((bl->last)->occupy == false)  
+		{  
+			bl->size = ( bl->size ) + (bl -> last)->size;  
+			bl->last = (bl -> last)->last;  
+			if(bl->last==NULL)  
+				head = bl;  
+		}  
+    }		 	 		
+}  
+void inite(block *head)  
+{  
+	head->size = 4096;  
+	head->occupy = false;  
+	head->last= NULL;  
+	head->next = NULL;  
+}  
+void print_pmm()  
+{  
+	block * temp = head;  
+	while (temp!=NULL)  
+	{  
+		cout<<(temp->size)<<" ";  
+		if(temp->occupy)	  
+		cout<<"占用"<<endl;  
+		else  
+		cout<<"空闲"<<endl;  
+		temp = temp->next;  
+	}   
+}  
+int main()  
+{  
+	inite(head);  
+	cout<<"内存空间大小为"<<head->size<<endl;  
+	cout<<"启动内存为200的进程"<<endl;  
+	cout<<endl;  
+	malloc(200);  
+	print_pmm();  
+	cout<<"启动内存为100的进程"<<endl;  
+	cout<<endl;  
+	malloc(100);  
+	print_pmm();  
+	cout<<"启动内存为1000的进程"<<endl;  
+	cout<<endl;  
+	malloc(1000);  
+	print_pmm();  
+	cout<<"启动内存为500的进程"<<endl;  
+	cout<<endl;  
+	malloc(500);  
+	print_pmm();  
+	cout<<"关闭内存为100的进程"<<endl;  
+	cout<<endl;  
+	free((head->next));  
+	print_pmm();  
+	cout<<"启动内存为50的进程"<<endl;  
+	cout<<endl;  
+	malloc(50);  
+	print_pmm();  
+	cout<<"关闭内存为1000的进程"<<endl;  
+	cout<<endl;  
+	free((head->next->next));  
+	print_pmm();  
+	system("pause");  
+	return 0;  
+}  
+		
 
 --- 
 
