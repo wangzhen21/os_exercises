@@ -34,7 +34,8 @@ buddy systemm： 优点：可以避免大的空闲分区被拆分，可减小外
 ## 小组思考题
 
 请参考ucore lab2代码，采用`struct pmm_manager` 根据你的`学号 mod 4`的结果值，选择四种（0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm）分配算法中的一种或多种，在应用程序层面(可以 用python,ruby,C++，C，LISP等高语言)来实现，给出你的设思路，并给出测试用例。 (spoc)
->#include <iostream>  
+>本人学号397 ，实现了最差匹配，使用了一个双向链表  
+#include <iostream>  
 using namespace std;  
 struct block  
 {  
