@@ -135,6 +135,61 @@ Virtual Address 7268:
 
 
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
+>#include <stdio.h>  
+#include <iostream>  
+using namespace std;  
+  
+int main()  
+{  
+	int i,j;  
+	char a[100];  
+	printf("请首先输入内存情况\n ");  
+	int pmm[200][50];  
+	for(i=0;i<128;i++)  
+	{  
+		scanf("%s",a);  
+		scanf("%s",a);  
+		for( j=0;j<32;j++)  
+			scanf("%x",&pmm[i][j]);  
+	}  
+	int virtual_add;  
+	while(1)   
+	{  
+		scanf("%s",a);  
+		scanf("%s",a);  
+		scanf("%x",&virtual_add);  
+		printf(":\n");  
+		int a_5=(virtual_add&31744)>>10;  
+		int b_5=(virtual_add&992)>>5;  
+		int c_5=virtual_add&31;  
+		printf("  --> pde index:0x%x pde contents:(",a_5);  
+		if(pmm[17][a_5]<128)  
+		{  
+			printf("valid 0, pfn 0x%x)\n",pmm[17][a_5]);  
+			printf("Fault (page directory entry not valid)\n");  
+		}	  
+		else  
+		{  
+			printf("valid 1, pfn 0x%x)\n",(pmm[17][a_5]-128));  
+			if(pmm[pmm[17][a_5]-128][b_5]>=128)  
+			{  
+				printf("    --> pte index:0x%x pte contents:(", b_5);  
+				printf("valid 1, pfn 0x%x)\n",pmm[pmm[17][a_5]-128][b_5]-128);  
+				printf("      --> Translates to Physical Address 0x%x --> Value:   0x%x\n",((pmm[pmm[17][a_5]-128][b_5]-128)*16+c_5),pmm[(pmm[pmm[17][a_5]-128][b_5]-128)][c_5]);  
+				  
+			}  
+			else  
+			{  
+					printf("    --> pte index:0x%x pte contents:(", b_5);  
+					printf("valid 1, pfn 0x%x)\n",pmm[pmm[17][a_5]-128][b_5]);  
+					printf("      --> Fault (page table entry not valid)\n");  
+			}  
+		}	  
+	}  
+		  
+	system("pause");   
+	return 0;  
+}	  
 
 
 （4）假设你有一台支持[反置页表](http://en.wikipedia.org/wiki/Page_table#Inverted_page_table)的机器，请问你如何设计操作系统支持这种类型计算机？请给出设计方案。
