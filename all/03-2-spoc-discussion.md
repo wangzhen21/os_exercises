@@ -14,6 +14,8 @@ NOTICE
 
 （1） (w3l2) 请简要分析64bit CPU体系结构下的分页机制是如何实现的
 ```
+>64位理论上支持内存大小为2的64次方，为16EB  
+64bit CPU有64根总线，支持的物理内存大小为2的64次方字节。为了减少页表的大小，采用多级页表的方式，通过在逻辑地址中根据页表级数和各级页表的项数，划分出各级页表所占的字段位数。当CPU生成一个逻辑地址，根据页表寄存器PSTR得到1级页表基址，再由1级页表的字段得出在1级页表中的索引，从而定位出2级页表的基址，再由2级页表的字段偏置，定位出下一级页表的基址，依次类推，直到最后一级页表，从中查得页帧的帧号，再结合逻辑地址中的偏置字段，得到其物理地址。可以采用快表，通过缓存，减少对内存的访问。
   + 采分点：说明64bit CPU架构的分页机制的大致特点和页表执行过程
   - 答案没有涉及如下3点；（0分）
   - 正确描述了64bit CPU支持的物理内存大小限制（1分）
@@ -30,10 +32,12 @@ NOTICE
 （1）(spoc) 某系统使用请求分页存储管理，若页在内存中，满足一个内存请求需要150ns。若缺页率是10%，为使有效访问时间达到0.5ms,求不在内存的页面的平均访问时间。请给出计算步骤。 
 
 - [x]  
+>
+> 设不在内存的页面平均访问时间为x  
+500=0.9\*150+0.1\*x
+解得 x=3.65ms  
 
-> 500=0.9\*150+0.1\*x
-
-（2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries
+（2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries  
 PTEs）大小为1 Byte，1个页目录表大小为32 Bytes，1个页表大小为32 Bytes。页目录基址寄存器（page directory base register，PDBR）保存了页目录表的物理地址（按页对齐）。
 
 PTE格式（8 bit） :
@@ -66,6 +70,8 @@ Virtual Address 748b
 
 比如答案可以如下表示：
 ```
+>
+
 Virtual Address 7570:
   --> pde index:0x1d  pde contents:(valid 1, pfn 0x33)
     --> pte index:0xb  pte contents:(valid 0, pfn 0x7f)
