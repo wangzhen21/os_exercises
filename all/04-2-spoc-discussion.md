@@ -35,6 +35,89 @@
 
 (2)（spoc）根据你的`学号 mod 4`的结果值，确定选择四种替换算法（0：LRU置换算法，1:改进的clock 页置换算法，2：工作集页置换算法，3：缺页率置换算法）中的一种来设计一个应用程序（可基于python, ruby, C, C++，LISP等）模拟实现，并给出测试。请参考如python代码或独自实现。
  - [页置换算法实现的参考实例](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab3/page-replacement-policy.py)
+ >  
+#include <iostream>  
+using namespace std;  
+struct page{  
+	bool access;  
+	bool change;  
+	int num;  
+}a[4];  
+void print_page()  
+{  
+	for(int i=0;i<4;i++)  
+	{  
+		cout<<"页号："<<a[i]. num;  
+		cout<<"访问位： "<<a[i].access;  
+		cout<<"修改位： "<<a[i].change<<endl;  
+	}  
+}		   
+int main()  
+{  
+	int i;  
+	for(i=0;i<4;i++)  	
+	{  
+		a[i].access=false;  
+		a[i].change=false;  
+		a[i].num=i;  
+	}  
+	int page_num;  
+	int change_not;  
+	int flag=0;  
+	int point=0;  
+	while(1)  
+	{  
+		cout<<"输入访问页号"<<endl;  
+		cin>>page_num;  
+		cout<<"是否修改？(1 or 0)："<<endl;  
+		cin>>change_not;  
+		for(i=0;i<4;i++)  
+		{  
+			if(a[i].num==page_num)  
+			{  
+				flag=1;  
+				a[i].access=true;  
+				if(change_not)  
+				{  
+					a[i].change=true;  
+				}  
+				continue;  
+			}  
+		}  
+		if(flag)  
+		{  
+			flag=0;  
+			print_page();  
+		}  
+		else  
+		{  
+			while(1)  
+			{  
+				if(a[point].access==0&&a[point].change==0)  
+				{  
+					a[point].access=true;  
+					a[point].change=false;  
+					a[point].num=page_num;  
+					print_page();  
+					break;  
+				}  
+				if(a[point].access==1)  
+				{  
+						a[point].access=false;  
+						point = (point +1)%4;  
+						continue;  
+				}  
+				if(a[point].change==1)  
+{  
+					point = (point +1)%4;  
+					a[point].change==false;  
+				}  
+			}  
+				point = (point +1)%4;  
+		}  
+	}  
+		return 0;  
+}  
  
 ## 扩展思考题
 （1）了解LIRS页置换算法的设计思路，尝试用高级语言实现其基本思路。此算法是江松博士（导师：张晓东博士）设计完成的，非常不错！
