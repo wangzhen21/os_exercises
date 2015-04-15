@@ -57,8 +57,30 @@ tf和context中的esp
 ### 练习2：分析并描述新创建的内核线程是如何分配资源的
 
 > 注意 理解对kstack, trapframe, context等的初始化
+>  
+分配kstack, 
+static int
+setup_kstack(struct proc_struct *proc) {
+    struct Page *page = alloc_pages(KSTACKPAGE);
+    if (page != NULL) {
+        proc->kstack = (uintptr_t)page2kva(page);
+        return 0;
+    }
+    return -E_NO_MEM;
+}
+分配trapframe,  
+int kernel_thread(int (*fn)(void *), void *arg, uint32_t clone_flags) {  
+    struct trapframe tf;    
+    memset(&tf, 0, sizeof(struct trapframe));  
+    tf.tf_cs = KERNEL_CS;  
+    tf.tf_ds = tf.tf_es = tf.tf_ss = KERNEL_DS;  
+    tf.tf_regs.reg_ebx = (uint32_t)fn;  
+    tf.tf_regs.reg_edx = (uint32_t)arg;  
+    tf.tf_eip = (uint32_t)kernel_thread_entry;  
+    return do_fork(clone_flags | CLONE_VM, 0, &tf);  
+}
 
-
+  
 当前进程中唯一，操作系统的整个生命周期不唯一，在get_pid中会循环使用pid，耗尽会等待
 
 ### 练习3：阅读代码，在现有基础上再增加一个内核线程，并通过增加cprintf函数到ucore代码中
