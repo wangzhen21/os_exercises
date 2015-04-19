@@ -9,11 +9,14 @@
 (1) ucore的线程控制块数据结构是什么？
 
 ### 关键数据结构
+>  
+proc_struct  
 
 (2) 如何知道ucore的两个线程同在一个进程？
 >  
 CR3  
-统一父进程 
+同一父进程  
+
 (3) context和trapframe分别在什么时候用到？
 >  
 context在切换线程时用到  
@@ -30,12 +33,14 @@ tf.tf_eip = (uint32_t) kernel_thread_entry;
 /kern-ucore/arch/i386/init/entry.S
 /kern/process/entry.S
 ```
-
+>  
+通过 pushl %edx
 (6)内核线程的堆栈初始化在哪？
 ```
 tf和context中的esp
 ```
-
+>  
+setup_kstack
 (7)fork()父子进程的返回值是不同的。这在源代码中的体现中哪？
 
 (8)内核线程initproc的第一次执行流程是什么样的？能跟踪出来吗？
