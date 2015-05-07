@@ -39,5 +39,279 @@
 请完成如下练习，完成代码填写，并形成spoc练习报告
 > 需写练习报告和简单编码，完成后放到git server 对应的git repo中
 
+▾
+Note History:
+note
+52 views
+lab6 spoc 提交处
+
+ 
+
+课堂问答
+Updated 10 days ago by Yu Chen
+followup discussions
+for lingering questions and comments
+Resolved Unresolved
+[谢晓晖]
+谢晓晖 10 days ago
+
+鲁逸沁 2012011314
+
+谢晓晖 2012011315
+[谢晓晖]
+谢晓晖 10 days ago
+
+https://github.com/THUxiexiaohui/ucore_lab/tree/master/labcodes_answer/lab6_result
+Reply to this followup discussion
+Resolved Unresolved
+[TTHJ]
+TTHJ 10 days ago
+
+计22 黄杰 2012011272
+
+计22 袁源 2012011294
+
+计24 杜鹃 2012011354
+[TTHJ]
+TTHJ 10 days ago
+
+https://github.com/THUHJ/ucore_lab/tree/master/related_info/lab6_spoc_discuss
+Reply to this followup discussion
+Resolved Unresolved
+[zhoujie15]
+zhoujie15 10 days ago
+
+ 
+
+---------------------- Scehdule at cpu_idle proc 0 --------------------------
+---------------------- Schedule at do_wait proc 1 --------------------------
+kernel_execve: pid = 2, name = "exit".
+I am the parent. Forking the child...
+I am parent, fork a child pid 3
+I am the parent, waiting now..
+---------------------- Schedule at do_wait proc 1 --------------------------
+I am the child.
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at trap before proc 3--------------------------
+---------------------- Schedule at trap after proc 3--------------------------
+---------------------- Schedule at do_exit proc 3--------------------------
+waitpid 3 ok.
+exit pass.
+---------------------- Schedule at do_exit proc 2--------------------------
+---------------------- Schedule at init_main --------------------------
+
+计21 周界 2012011394
+
+计21 张梦豪 2012011401
+
+计21 马晓彬 2012011402
+Reply to this followup discussion
+Resolved Unresolved
+[ZHOU Shengkai]
+ZHOU Shengkai 10 days ago
+
+王振 2012011397
+
+韦福超 2012011392
+
+周圣凯2012011342
+
+ 
+
+++ setup timer interrupts
+sched_class_proc_tick:pid = 0, stride = 0, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 0, stride = 0, priority = 0
+sched_class_dequeue: pid = 1, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 1, stride = 2147483647, priority = 0
+wakeup_proc: 2
+sched_class_enqueue: pid = 2, stride = 0, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_dequeue: pid = 2, stride = 2147483647, priority = 0
+kernel_execve: pid = 2, name = "priority".
+wakeup_proc: 3
+sched_class_enqueue: pid = 3, stride = 0, priority = 0
+wsched_class_proc_tick:pid = 2, stride = 2147483647, priority = 6
+akeup_proc: 4
+sched_class_enqueue: pid = 4, stride = 0, priority = 0
+wakeup_proc: 5
+sched_class_enqueue: pid = 5, stride = 0, priority = 0
+wakeup_proc: 6
+sched_class_enqueue: pid = 6, stride = 0, priority = 0
+wakeup_proc: 7
+sched_class_enqueue: pid = 7, stride = 0, priority = 0
+main: fork ok,now need to wait pids.
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_dequeue: pid = 7, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 7, stride = 2147483647, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 2147483647, priority = 5
+sched_class_dequeue: pid = 6, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 6, stride = 2147483647, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 2147483647, priority = 4
+sched_class_dequeue: pid = 5, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 5, stride = 2147483647, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 2147483647, priority = 3
+sched_class_dequeue: pid = 4, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 4, stride = 2147483647, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 2147483647, priority = 2
+sched_class_dequeue: pid = 3, stride = 2147483647, priority = 0
+sched_class_proc_tick:pid = 3, stride = 2147483647, priority = 0
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 3, stride = 2147483647, priority = 1
+sched_class_dequeue: pid = 3, stride = 4294967294, priority = 1
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 3, stride = 4294967294, priority = 1
+sched_class_dequeue: pid = 5, stride = 2863311529, priority = 3
+sched_class_proc_tick:pid = 5, stride = 2863311529, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 2863311529, priority = 3
+sched_class_dequeue: pid = 4, stride = 3221225470, priority = 2
+sched_class_proc_tick:pid = 4, stride = 3221225470, priority = 2
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 3221225470, priority = 2
+sched_class_dequeue: pid = 6, stride = 2684354558, priority = 4
+sched_class_proc_tick:pid = 6, stride = 2684354558, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 2684354558, priority = 4
+sched_class_dequeue: pid = 7, stride = 2576980376, priority = 5
+sched_class_proc_tick:pid = 7, stride = 2576980376, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 2576980376, priority = 5
+sched_class_dequeue: pid = 7, stride = 3006477105, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 3006477105, priority = 5
+sched_class_dequeue: pid = 6, stride = 3221225469, priority = 4
+sched_class_proc_tick:pid = 6, stride = 3221225469, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 3221225469, priority = 4
+sched_class_dequeue: pid = 5, stride = 3579139411, priority = 3
+sched_class_proc_tick:pid = 5, stride = 3579139411, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 3579139411, priority = 3
+sched_class_dequeue: pid = 7, stride = 3435973834, priority = 5
+sched_class_proc_tick:pid = 7, stride = 3435973834, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 3435973834, priority = 5
+sched_class_dequeue: pid = 6, stride = 3758096380, priority = 4
+sched_class_proc_tick:pid = 6, stride = 3758096380, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 3758096380, priority = 4
+sched_class_dequeue: pid = 4, stride = 4294967293, priority = 2
+sched_class_proc_tick:pid = 4, stride = 4294967293, priority = 2
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 4294967293, priority = 2
+sched_class_dequeue: pid = 7, stride = 3865470563, priority = 5
+sched_class_proc_tick:pid = 7, stride = 3865470563, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 3865470563, priority = 5
+sched_class_dequeue: pid = 5, stride = 4294967293, priority = 3
+sched_class_proc_tick:pid = 5, stride = 4294967293, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 4294967293, priority = 3
+sched_class_dequeue: pid = 6, stride = 4294967291, priority = 4
+sched_class_proc_tick:pid = 6, stride = 4294967291, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 4294967291, priority = 4
+sched_class_dequeue: pid = 7, stride = 4294967292, priority = 5
+sched_class_proc_tick:pid = 7, stride = 4294967292, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 4294967292, priority = 5
+sched_class_dequeue: pid = 6, stride = 536870906, priority = 4
+sched_class_proc_tick:pid = 6, stride = 536870906, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 536870906, priority = 4
+sched_class_dequeue: pid = 7, stride = 429496725, priority = 5
+sched_class_proc_tick:pid = 7, stride = 429496725, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 429496725, priority = 5
+sched_class_dequeue: pid = 5, stride = 715827879, priority = 3
+sched_class_proc_tick:pid = 5, stride = 715827879, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 715827879, priority = 3
+sched_class_dequeue: pid = 4, stride = 1073741820, priority = 2
+sched_class_proc_tick:pid = 4, stride = 1073741820, priority = 2
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 1073741820, priority = 2
+sched_class_dequeue: pid = 3, stride = 2147483645, priority = 1
+sched_class_proc_tick:pid = 3, stride = 2147483645, priority = 1
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 3, stride = 2147483645, priority = 1
+sched_class_dequeue: pid = 7, stride = 858993454, priority = 5
+sched_class_proc_tick:pid = 7, stride = 858993454, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 858993454, priority = 5
+sched_class_dequeue: pid = 6, stride = 1073741817, priority = 4
+sched_class_proc_tick:pid = 6, stride = 1073741817, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 1073741817, priority = 4
+sched_class_dequeue: pid = 5, stride = 1431655761, priority = 3
+sched_class_proc_tick:pid = 5, stride = 1431655761, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 1431655761, priority = 3
+sched_class_dequeue: pid = 7, stride = 1288490183, priority = 5
+sched_class_proc_tick:pid = 7, stride = 1288490183, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 1288490183, priority = 5
+sched_class_dequeue: pid = 6, stride = 1610612728, priority = 4
+sched_class_proc_tick:pid = 6, stride = 1610612728, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 1610612728, priority = 4
+sched_class_dequeue: pid = 4, stride = 2147483643, priority = 2
+sched_class_proc_tick:pid = 4, stride = 2147483643, priority = 2
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 2147483643, priority = 2
+sched_class_dequeue: pid = 7, stride = 1717986912, priority = 5
+sched_class_proc_tick:pid = 7, stride = 1717986912, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 1717986912, priority = 5
+sched_class_dequeue: pid = 5, stride = 2147483643, priority = 3
+sched_class_proc_tick:pid = 5, stride = 2147483643, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 2147483643, priority = 3
+sched_class_dequeue: pid = 6, stride = 2147483639, priority = 4
+sched_class_proc_tick:pid = 6, stride = 2147483639, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 2147483639, priority = 4
+sched_class_dequeue: pid = 7, stride = 2147483641, priority = 5
+sched_class_proc_tick:pid = 7, stride = 2147483641, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 2147483641, priority = 5
+sched_class_dequeue: pid = 6, stride = 2684354550, priority = 4
+sched_class_proc_tick:pid = 6, stride = 2684354550, priority = 4
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 6, stride = 2684354550, priority = 4
+sched_class_dequeue: pid = 7, stride = 2576980370, priority = 5
+sched_class_proc_tick:pid = 7, stride = 2576980370, priority = 5
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 7, stride = 2576980370, priority = 5
+sched_class_dequeue: pid = 5, stride = 2863311525, priority = 3
+sched_class_proc_tick:pid = 5, stride = 2863311525, priority = 3
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 5, stride = 2863311525, priority = 3
+sched_class_dequeue: pid = 4, stride = 3221225466, priority = 2
+sched_class_proc_tick:pid = 4, stride = 3221225466, priority = 2
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_class_enqueue: pid = 4, stride = 3221225466, priority = 2
+sched_class_dequeue: pid = 3, stride = 4294967292, priority = 1
+sched_class_proc_tick:pid = 3, stride = 4294967292, priority = 1
+schedule!!!!!!!!!!!!!!!!!!!!!!!!!!
+sched_cla
+
+
 ### 练习用的[lab6 spoc exercise project source code](https://github.com/chyyuu/ucore_lab/tree/master/labcodes_answer/lab6_result)
 
